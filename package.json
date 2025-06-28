@@ -1,9 +1,10 @@
 {
   "name": "mern-auth",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "backend/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon backend/index.js",
+    "start": "node backend/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mailtrap": "^4.1.0",
+    "mongodb": "^6.17.0",
     "mongoose": "^8.16.1"
   },
   "devDependencies": {
