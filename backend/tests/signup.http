@@ -1,0 +1,82 @@
+### Variables
+@baseUrl = http://localhost:5001
+@contentType = application/json
+
+### Sign up new user - Success case
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "john.doe@example.com",
+  "password": "password123",
+  "name": "John Doe"
+}
+
+###
+
+### Sign up another user
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "jane.smith@example.com",
+  "password": "securepass456",
+  "name": "Jane Smith"
+}
+
+###
+
+### Sign up with existing email (should fail)
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "john.doe@example.com",
+  "password": "differentpassword",
+  "name": "Another John"
+}
+
+###
+
+### Sign up with missing name (should fail)
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "noname@example.com",
+  "password": "password123"
+}
+
+###
+
+### Sign up with missing email (should fail)
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "password": "password123",
+  "name": "No Email User"
+}
+
+###
+
+### Sign up with missing password (should fail)
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "nopass@example.com",
+  "name": "No Password User"
+}
+
+###
+
+### Sign up with invalid email format (should fail if you add validation)
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "invalid-email",
+  "password": "password123",
+  "name": "Invalid Email User"
+}
