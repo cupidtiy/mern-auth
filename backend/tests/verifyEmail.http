@@ -1,0 +1,58 @@
+### Verify Email - Valid Code
+POST http://localhost:5001/api/auth/verify-email
+Content-Type: application/json
+
+{
+  "code": "466174"
+}
+
+###
+
+### Verify Email - Invalid Code
+POST http://localhost:5001/api/auth/verify-email
+Content-Type: application/json
+
+{
+  "code": "000000"
+}
+
+###
+
+### Verify Email - Expired Code
+POST http://localhost:5001/api/auth/verify-email
+Content-Type: application/json
+
+{
+  "code": "999999"
+}
+
+###
+
+### Verify Email - Missing Code
+POST http://localhost:5001/api/auth/verify-email
+Content-Type: application/json
+
+{
+}
+
+###
+
+### Verify Email - Empty Code
+POST http://localhost:5001/api/auth/verify-email
+Content-Type: application/json
+
+{
+  "code": ""
+}
+
+###
+
+### Signup User First (to get verification code)
+POST http://localhost:5001/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}

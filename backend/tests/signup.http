@@ -19,7 +19,7 @@ POST {{baseUrl}}/api/auth/signup
 Content-Type: {{contentType}}
 
 {
-  "email": "jane.smith@example.com",
+  "email": "info.aeslilly@gmail.com",
   "password": "securepass456",
   "name": "Jane Smith"
 }
