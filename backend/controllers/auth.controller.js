@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateVerificationToken } from "../util/generateVerificationToken.js";
 import { generateTokenAndSetCookie } from "../util/generateTokenAndSetCookie.js";
+import { sendVerificationEmail } from "../mailtrap/emails.js";
 
 export const signup = async (req, res) => {
     const { email, password, name } = req.body;
@@ -29,6 +30,7 @@ export const signup = async (req, res) => {
         await newUser.save();
 
         generateTokenAndSetCookie(res, newUser._id);
+        await sendVerificationEmail(newUser.email, verificationToken);
 
         res.status(201).json({
             success: true,
@@ -38,6 +40,7 @@ export const signup = async (req, res) => {
                 password: undefined
             }
         });
+
 
     } catch (error) {
         return res.status(500).json({ success: false, message: error.message });
