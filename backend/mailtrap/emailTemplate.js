@@ -93,6 +93,7 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
 </body>
 </html>
 `;
+
 export const WELCOME_EMAIL_TEMPLATE = `
 <!DOCTYPE html>
 <html lang="en">
@@ -103,15 +104,11 @@ export const WELCOME_EMAIL_TEMPLATE = `
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(to right, #8c56c0, #a07bce); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Welcome to PassportBuddy!</h1>
+    <h1 style="color: white; margin: 0;">Welcome to Passport Buddy!</h1>
   </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hello {name},</p>
-    <p>Thanks for choosing PassportBuddy! We are happy to see you on board.</p>
-    
-    <div style="text-align: center; margin: 30px 0;">
-    <img src="cid:favicon" alt="Passport Buddy Logo" style="width: 60px; height: 60px; border-radius: 50%; background-color: #8c56c0; padding: 10px;">
-    </div>
+    <p>Thanks for choosing Passport Buddy! We are happy to see you on board.</p>
     
     <p>Here's what you can do with Passport Buddy:</p>
     <ul style="color: #555; padding-left: 20px; margin: 20px 0;">
@@ -121,18 +118,12 @@ export const WELCOME_EMAIL_TEMPLATE = `
       <li>Track all your adventures</li>
     </ul>
         
-    
     <p>We hope you enjoy this journey as much as we enjoy creating it for you.</p>
-        
     <p>Best regards,<br>Passport Buddy Team</p>
   </div>
-  
+
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
-    <p>
-      <a href="{unsubscribeURL}" style="color: #888; text-decoration: underline;">Unsubscribe</a> | 
-    </p>
-    <p>Passport Buddy</p>
   </div>
 </body>
 </html>

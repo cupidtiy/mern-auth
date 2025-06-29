@@ -18,6 +18,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
         throw new Error(`Failed to send verification email: ${error}`);
     }
 }
+
 export const sendWelcomeEmail = async (email, name) => {
     const recipient = [{ email }];
 
@@ -26,13 +27,8 @@ export const sendWelcomeEmail = async (email, name) => {
             from: sender,
             to: recipient,
             subject: "Welcome to Passport Buddy!",
-            html: WELCOME_EMAIL_TEMPLATE.replace("{name}", name),
-            category: "Welcome Email",
-            attachments: [{
-                filename: 'favicon.png',
-                path:  '../frontend/assets/favicon.png', 
-                cid: 'favicon'
-            }]
+            html: WELCOME_EMAIL_TEMPLATE.replace("{name}", name).replace("{dashboardURL}", "your-dashboard-url"),
+            category: "Welcome Email"
         });
 
         console.log("Welcome email sent successfully", response);

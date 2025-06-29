@@ -55,15 +55,31 @@ export const verifyEmail = async (req, res) => {
             verificationExpires: { $gt: Date.now() }
         })
 
-        if (!user) { // Check if user exists and token is valid
-            return res.status(400).json({ success: false, message: "Invalid or expired verification code" });
+        if (!user) {
+            // Check if user exists with this email but with wrong/expired token
+            const userWithEmail = await User.findOne({ 
+                verificationToken: { $exists: true }, 
+                verificationExpires: { $exists: true }
+            });
+            
+            if (userWithEmail && userWithEmail.verificationExpires < Date.now()) {
+                return res.status(400).json({ 
+                    success: false, 
+                    message: "Verification code has expired. Please request a new one." 
+                });
+            }
+            
+            return res.status(400).json({ 
+                success: false, 
+                message: "Invalid verification code. Please try again." 
+            });
         }
 
         user.isVerified = true;
         user.verificationToken = undefined;
         user.verificationExpires = undefined;
 
-         await user.save();
+        await user.save();
 
         await sendWelcomeEmail(user.email, user.name);
         res.status(200).json({
@@ -76,7 +92,7 @@ export const verifyEmail = async (req, res) => {
                 verificationExpires: undefined
             }
         });
-        
+
     } catch (error) {
         return res.status(500).json({ success: false, message: error.message });
 
@@ -88,5 +104,6 @@ export const login = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-    res.send("logout route");
+    res.clearCookie("token");
+    res.status(200).json({ success: true, message: "Logged out successfully" });
 };
