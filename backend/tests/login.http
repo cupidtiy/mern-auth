@@ -1,0 +1,65 @@
+### Variables
+@baseUrl = http://localhost:5000
+@contentType = application/json
+
+### Login with valid credentials
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+
+###
+
+### Login with invalid email
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "nonexistent@example.com",
+  "password": "password123"
+}
+
+###
+
+### Login with invalid password
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "john.doe@example.com",
+  "password": "wrongpassword"
+}
+
+###
+
+### Login with missing email
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "password": "password123"
+}
+
+###
+
+### Login with missing password
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "john.doe@example.com"
+}
+
+###
+
+### Login with empty credentials
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "",
+  "password": ""
+}
